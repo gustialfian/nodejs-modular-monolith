@@ -1,5 +1,5 @@
 {
-  "name": "hrd-backend",
+  "name": "tic-v2-backend",
   "version": "0.1.0",
   "description": "",
   "main": "app.js",
@@ -15,13 +15,13 @@
   "author": "Software Enggineer Delameta Bilano",
   "license": "ISC",
   "dependencies": {
+    "@godaddy/terminus": "^4.1.2",
     "@phc/argon2": "^1.0.9",
     "cors": "^2.8.5",
     "dotenv": "^7.0.0",
     "express": "^4.16.4",
     "express-validator": "^5.3.1",
     "jsonwebtoken": "^8.5.1",
-    "knex": "^0.16.5",
     "lodash": "^4.17.13",
     "moment": "^2.24.0",
     "pg": "^7.10.0",

@@ -3,7 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors')
 
-const { isDev } = require('./configs/index')
+const { isDev } = require('./core/configs')
 const { registerRoute } = require('./router')
 
 // middleware
@@ -26,9 +26,9 @@ const createApp = () => {
     return res.json('Safe')
   })
 
-  registerRoute(app);
+  registerRoute(app)
 
-  return app;
+  return app
 }
 
 module.exports = {

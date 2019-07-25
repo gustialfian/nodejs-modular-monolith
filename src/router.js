@@ -1,7 +1,8 @@
 
 const registerRoute = (app) => {
-  app.use('/', require('./auth/authContoller'))
-  app.use('/user', require('./user/userController'))
+  app.get('/', (req, res) => {
+    res.json({ msg: 'safe' })
+  })
 }
 
 module.exports = {

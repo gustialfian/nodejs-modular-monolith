@@ -1,13 +1,4 @@
-# Nodejs Modular Monolith
-
-## Docker
-```bash
-docker build -t <your username>/node-modular-monolith
-
-docker run -p 3000:3000 -d <your username>/node-web-app
-```
-
-## Component
+# Component
 - domain module: modul yang berhubungan dengan bisnis proses
   - controller: melakukan request, response, validation
   - service: bisnis logic.
@@ -25,7 +16,3 @@ docker run -p 3000:3000 -d <your username>/node-web-app
 - router.js: list route
 - server.js: bootstraping all module
 - app.js: entry point
-
-## TODO
-- dockerize app
-- add test suit

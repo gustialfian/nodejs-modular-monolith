@@ -7,8 +7,6 @@ const myFormat = printf(info => {
   return `[${moment().format()}] ${info.level}: ${JSON.stringify(info.message)}`;
 })
 
-// method to set timezone
-
 const logger = createLogger({
   format: combine(
     myFormat
