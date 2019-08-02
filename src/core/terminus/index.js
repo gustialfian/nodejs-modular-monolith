@@ -1,12 +1,12 @@
 const { createTerminus } = require('@godaddy/terminus');
 
-const { dbCleanUp } = require('../database')
+const db = require('../database')
 const { logger } = require('../logger')
 
 
 function onSignal () {
   logger.info('server is starting cleanup')
-  dbCleanUp()
+  db.cleanUp()
 }
 
 async function onHealthCheck () {

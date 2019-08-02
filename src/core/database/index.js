@@ -27,7 +27,7 @@ pool.query('SELECT NOW()')
     logger.error(err.message)
   })
 
-const dbCleanUp = () => {
+const cleanUp = () => {
   pool.end(() => {
     logger.info('pool has ended')
   })
@@ -35,5 +35,5 @@ const dbCleanUp = () => {
 
 module.exports = {
   pool,
-  dbCleanUp,
+  cleanUp,
 }

@@ -24,7 +24,7 @@ const logger = createLogger({
   silent: isTest()
 })
 
-const logTrafic = (req, _, next) => {
+const logTrafic = (req, res, next) => {
   logger.info({
     id: req.user.id,
     username: req.user.username,
