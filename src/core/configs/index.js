@@ -1,7 +1,5 @@
-const _ = require('lodash')
-
 const { PROD_ENV, DEV_ENV, TEST_ENV } = require('./constants')
-const env = _.isNil(process.env.APP_ENV) ? 'dev' : process.env.APP_ENV
+const env = process.env.APP_ENV ? process.env.APP_ENV : DEV_ENV
 
 module.exports = {
   app: {

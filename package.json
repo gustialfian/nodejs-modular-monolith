@@ -1,5 +1,5 @@
 {
-  "name": "tic-v2-backend",
+  "name": "nodejs-modular-monolith",
   "version": "0.1.0",
   "description": "",
   "main": "app.js",
@@ -12,7 +12,7 @@
     "type": "git",
     "url": "https://git.delameta.id/gustialfian/hrd-backend.git"
   },
-  "author": "Software Enggineer Delameta Bilano",
+  "author": "Gusti Alfian",
   "license": "ISC",
   "dependencies": {
     "@godaddy/terminus": "^4.1.2",

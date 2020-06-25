@@ -4,7 +4,8 @@ const registerRoute = (app) => {
     res.json({ msg: 'safe' })
   })
 
-  app.use('/sync', require('./module/syncing/handler'))
+  app.use('/api/sync', require('./module/syncing/handler'))
+  app.use('/api/users', require('./module/users/handler'))
 }
 
 module.exports = {

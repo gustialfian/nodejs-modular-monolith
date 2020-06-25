@@ -5,6 +5,7 @@ const cors = require('cors')
 
 const { isDev } = require('./core/configs')
 const { registerRoute } = require('./router')
+const { logTrafic } = require('./core/logger')
 
 // middleware
 const errorHandler = (err, req, res, next) => {
@@ -17,6 +18,7 @@ const createApp = () => {
 
   app.use(bodyParser.json())
   app.use(cors())
+  app.use(logTrafic)
 
   if (!isDev()) {
     app.use(errorHandler)

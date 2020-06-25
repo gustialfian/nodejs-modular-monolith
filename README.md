@@ -1,5 +1,23 @@
 # Nodejs Modular Monolith
 
+## Getting Started
+```bash
+npm install
+
+cp .env.example .env
+
+docker run --name db --rm \
+  -e POSTGRES_PASSWORD=sandbox \
+  -e POSTGRES_USER=sandbox \
+  -e POSTGRES_DB=sandbox \
+  -p 6543:5432 \
+  postgres:13-alpine
+
+# manualy run schema
+
+npm run dev
+```
+
 ## Component
 - domain module: modul yang berhubungan dengan bisnis proses
   - controller: melakukan request, response, validation
