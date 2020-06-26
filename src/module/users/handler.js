@@ -2,15 +2,15 @@ const router = require('express').Router()
 const { logger } = require('../../core/logger')
 const userRepo = require('./userRepository')
 
-router.get('/', async (req, res) => {
+const namespace = 'users.handler'
 
+router.get('/', async (req, res) => {
   try {
     const data = await userRepo.findAll()
     return res.json({ data })
   } catch (error) {
-
+    logger.error(`${namespace}.get./`)
   }
-  return res.json("GET: Users")
 })
 
 router.get('/:id', async (req, res) => {
