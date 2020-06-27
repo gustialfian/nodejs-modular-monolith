@@ -1,4 +1,3 @@
-
 const { validationResult } = require('express-validator/check')
 
 const validate = (req, res, next) => {

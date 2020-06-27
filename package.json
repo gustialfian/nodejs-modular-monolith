@@ -16,7 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "@godaddy/terminus": "^4.1.2",
-    "@phc/argon2": "^1.0.9",
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^7.0.0",
     "express": "^4.16.4",
@@ -25,7 +25,6 @@
     "lodash": "^4.17.13",
     "moment": "^2.24.0",
     "pg": "^7.10.0",
-    "upash": "^1.0.2",
     "uuid": "^3.3.2",
     "winston": "^3.2.1"
   },
