@@ -1,12 +1,11 @@
-const _ = require('lodash')
-
 const { PROD_ENV, DEV_ENV, TEST_ENV } = require('./constants')
-const env = _.isNil(process.env.APP_ENV) ? 'dev' : process.env.APP_ENV
+
+const env = process.env.APP_ENV || 'dev'
 
 module.exports = {
   app: {
     env,
-    port: process.env.APP_PORT,
+    port: process.env.APP_PORT || 3000,
   },
   db: {
     host: process.env.DB_HOST,
@@ -16,10 +15,10 @@ module.exports = {
     database: process.env.DB_NAME,
   },
   jwt: {
-    secret: process.env.JWT_SECRET ? process.env.JWT_SECRET : "secret-key",
+    secret: process.env.JWT_SECRET || "secret-key",
   },
   log: {
-    dir: process.env.LOG_DIR
+    dir: process.env.LOG_DIR || `./logs`
   },
   isProd: () => env === PROD_ENV,
   isDev: () => env === DEV_ENV,
