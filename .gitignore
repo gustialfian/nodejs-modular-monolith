@@ -83,3 +83,6 @@ typings/
 
 # environment variable
 .env
+
+# vscode workspace settings
+.vscode

@@ -1,5 +1,33 @@
 # Nodejs Modular Monolith
 
+## Getting Started
+```bash
+npm install
+
+cp .env.example .env
+
+docker run --name db --rm \
+  -e POSTGRES_PASSWORD=sandbox \
+  -e POSTGRES_USER=sandbox \
+  -e POSTGRES_DB=sandbox \
+  -p 6543:5432 \
+  postgres:13-alpine
+
+# manualy run schema
+
+npm run dev
+```
+
+## production
+```bash
+npm install -g pm2
+
+pm2 start ecosystem.config.js
+pm2 restart ecosystem.config.js
+pm2 stop ecosystem.config.js
+pm2 delete ecosystem.config.js
+```
+
 ## Component
 - domain module: modul yang berhubungan dengan bisnis proses
   - controller: melakukan request, response, validation
@@ -18,7 +46,3 @@
 - router.js: list route
 - server.js: bootstraping all module
 - app.js: entry point
-
-## TODO
-- dockerize app
-- add test suit

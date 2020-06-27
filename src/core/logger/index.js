@@ -26,10 +26,8 @@ const logger = createLogger({
 
 const logTrafic = (req, res, next) => {
   logger.info({
-    id: req.user.id,
-    username: req.user.username,
-    endpoint: req.originalUrl,
     method: req.method,
+    endpoint: req.originalUrl,
   });
   next();
 }
