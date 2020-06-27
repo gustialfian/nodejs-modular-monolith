@@ -2,6 +2,8 @@ const router = require('express').Router()
 const { logger } = require('../../core/logger')
 const authService = require('./authService')
 
+const { authenticate } = require('./authMiddleware')
+
 const namespace = 'users.authHandler'
 
 router.post('/register', async (req, res) => {
@@ -12,13 +14,16 @@ router.post('/register', async (req, res) => {
       role: req.body.role,
     }
     const data = await authService.registerUser(user)
-    return res.json({ 
+    return res.json({
       status: "SUCCESS",
       data,
     })
   } catch (error) {
-    logger.error(`${namespace}.post.register: ${error.message}`)
-    return res.status(500).json({status: "INTERNAL_SERVER_ERROR"})
+    logger.error({
+      service: `${namespace}.post.register`,
+      messaage: error.message,
+    })
+    return res.status(500).json({ status: "INTERNAL_SERVER_ERROR" })
   }
 })
 
@@ -38,14 +43,21 @@ router.post('/sign-in', async (req, res) => {
 
     const token = authService.generateJWT(verified.data)
 
-    return res.json({ 
+    return res.json({
       status: "SUCCESS",
       data: `Bearer ${token.data}`,
     })
   } catch (error) {
-    logger.error(`${namespace}.post.sign-in: ${error.message}`)
-    return res.status(500).json({status: "INTERNAL_SERVER_ERROR"})
+    logger.error({
+      service: `${namespace}.post.sign-in`,
+      messaage: error.message,
+    })
+    return res.status(500).json({ status: "INTERNAL_SERVER_ERROR" })
   }
+})
+
+router.get('/guarded', authenticate('ADMIN'), (req, res) => {
+  return res.json("access granted")
 })
 
 module.exports = router
