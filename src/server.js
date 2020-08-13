@@ -12,7 +12,7 @@ const errorHandler = (err, req, res, next) => {
   return res.status(500).json({ msg: 'Something happend, please check your request.' })
 }
 
-const createApp = () => {
+function createApp()  {
   const app = express();
   app.disable('x-powered-by')
 

@@ -10,9 +10,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://git.delameta.id/gustialfian/hrd-backend.git"
+    "url": "https://github.com/gustialfian/nodejs-modular-monolith"
   },
-  "author": "Gusti Alfian",
+  "author": "Gusti Alfian M. P.",
   "license": "ISC",
   "dependencies": {
     "@godaddy/terminus": "^4.1.2",
