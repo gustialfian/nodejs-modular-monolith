@@ -1,8 +1,8 @@
 const { PROD_ENV, DEV_ENV, TEST_ENV } = require('./constants')
 
-const env = process.env.APP_ENV || 'dev'
+const env = process.env.APP_ENV || DEV_ENV
 
-module.exports = {
+const config = {
   app: {
     env,
     port: process.env.APP_PORT || 3000,
@@ -24,3 +24,7 @@ module.exports = {
   isDev: () => env === DEV_ENV,
   isTest: () => env === TEST_ENV,
 }
+
+console.log(`config: `, config)
+
+module.exports = config

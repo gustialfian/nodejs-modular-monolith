@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "cross-env APP_ENV=prod node src/app.js",
-    "dev": "cross-env APP_ENV=dev nodemon src/app.js",
+    "dev": "nodemon src/app.js",
     "test": "cross-env APP_ENV=test jest"
   },
   "repository": {
@@ -26,7 +26,8 @@
     "moment": "^2.24.0",
     "pg": "^7.10.0",
     "uuid": "^3.3.2",
-    "winston": "^3.2.1"
+    "winston": "^3.2.1",
+    "winston-daily-rotate-file": "^4.5.0"
   },
   "devDependencies": {
     "cross-env": "^5.2.0",
