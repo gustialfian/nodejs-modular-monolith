@@ -1,6 +1,7 @@
 require('dotenv').config()
 const express = require('express');
 const bodyParser = require('body-parser');
+const helmet = require('helmet')
 const cors = require('cors')
 
 const { isDev } = require('./core/configs')
@@ -14,8 +15,7 @@ const errorHandler = (err, req, res, next) => {
 
 function createApp()  {
   const app = express();
-  app.disable('x-powered-by')
-
+  app.use(helmet())
   app.use(bodyParser.json())
   app.use(cors())
   app.use(logTrafic)
