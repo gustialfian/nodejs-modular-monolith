@@ -1,0 +1,17 @@
+# used for local testing only
+version: "3"
+
+services:
+  postgres:
+    image: postgres:13-alpine
+    environment:
+      POSTGRES_PASSWORD: sandbox
+      POSTGRES_USER: sandbox
+      POSTGRES_DB: sandbox
+    ports:
+      - "6543:5432"
+    volumes:
+      # TODO start from a clean point
+      - ./data/pgdata:/var/lib/postgresql/data/pgdata
+      # TODO automatically prepare db schema
+      # ../../module/users/schema.sql:/docker-entrypoint-initdb.d/create_tables.sql
