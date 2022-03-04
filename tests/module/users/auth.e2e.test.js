@@ -11,8 +11,12 @@ const app = require('../../../src/app');
 
 
 // Decided to go with docker-compose files, to avoid env management in tests & more flexibility
+
 describe("authHandler module", () => {
   describe("/register", () => {
+
+    // Both tests now are produces irrelevant results due to pool problems
+
     it("should create new user in database (posititve)", () => {
       request(app)
         .post('/api/auth/register')
