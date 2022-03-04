@@ -28,6 +28,11 @@ pm2 stop ecosystem.config.js
 pm2 delete ecosystem.config.js
 ```
 
+## test
+```bash
+docker-compose -f test.docker-compose.yaml up --build
+```
+
 ## Component
 - domain module: modul yang berhubungan dengan bisnis proses
   - controller: melakukan request, response, validation
