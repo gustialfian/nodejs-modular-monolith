@@ -21,7 +21,7 @@ router.post('/register', async (req, res) => {
   } catch (error) {
     logger.error({
       service: `${namespace}.post.register`,
-      messaage: error.message,
+      message: error.message,
     })
     return res.status(500).json({ status: "INTERNAL_SERVER_ERROR" })
   }
@@ -50,7 +50,7 @@ router.post('/sign-in', async (req, res) => {
   } catch (error) {
     logger.error({
       service: `${namespace}.post.sign-in`,
-      messaage: error.message,
+      message: error.message,
     })
     return res.status(500).json({ status: "INTERNAL_SERVER_ERROR" })
   }
