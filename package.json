@@ -4,9 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "cross-env APP_ENV=prod node src/app.js",
+    "start": "cross-env NODE_ENV=prod node src/app.js",
     "dev": "nodemon src/app.js",
-    "test": "cross-env APP_ENV=test jest"
+    "test": "cross-env NODE_ENV=test jest"
   },
   "repository": {
     "type": "git",

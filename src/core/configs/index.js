@@ -1,6 +1,6 @@
 const { PROD_ENV, DEV_ENV, TEST_ENV } = require('./constants')
 
-const env = process.env.APP_ENV || DEV_ENV
+const env = process.env.NODE_ENV || DEV_ENV
 
 const config = {
   app: {
