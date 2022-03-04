@@ -8,6 +8,7 @@ const {
     user,
     password,
     database,
+    connectionTimeoutMillis
   }
 } = require('../configs')
 
@@ -17,6 +18,7 @@ const pool = new Pool({
   database,
   password,
   port,
+  connectionTimeoutMillis
 })
 
 pool.query('SELECT NOW()')
@@ -25,6 +27,8 @@ pool.query('SELECT NOW()')
   })
   .catch(err => {
     logger.error(err.message)
+    cleanUp()
+    process.exit(1)
   })
 
 const cleanUp = () => {
