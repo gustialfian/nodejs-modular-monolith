@@ -12,6 +12,7 @@ function onSignal () {
 async function onHealthCheck () {
   // checks if the system is healthy, like the db connection is live
   // resolves, if health, rejects if not
+  await db.pool.query("SELECT NOW()");
 }
 
 const registerTerminus = server => {
