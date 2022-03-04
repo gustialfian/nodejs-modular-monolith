@@ -14,3 +14,5 @@ server.listen(appConfigs.port, () => {
   logger.info('Server up...')
   logger.info(`http://localhost:${appConfigs.port}/`)
 })
+
+module.exports = server

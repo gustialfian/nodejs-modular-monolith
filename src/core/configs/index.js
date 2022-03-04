@@ -9,11 +9,11 @@ const config = {
   },
   db: {
     host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
+    port: parseInt(process.env.DB_PORT, 10),
     user: process.env.DB_USER,
     password: process.env.DB_PASS,
     database: process.env.DB_NAME,
-    connectionTimeoutMillis: 1000
+    connectionTimeoutMillis: 10000
   },
   jwt: {
     secret: process.env.JWT_SECRET || "secret-key",

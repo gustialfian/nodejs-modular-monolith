@@ -9,18 +9,18 @@ const myFormat = printf(info => {
   return `[${moment().format()}] ${info.level}: ${JSON.stringify(info.message)}`;
 })
 
-const dailyTransport = new winston.transports.DailyRotateFile({
-  filename: 'application-%DATE%.log',
-  datePattern: 'YYYY-MM-DD-HH',
-  zippedArchive: true,
-  maxSize: '20m',
-  maxFiles: '14d',
-  dirname: logConfigs.dir,
-});
+// const dailyTransport = new winston.transports.DailyRotateFile({
+//   filename: 'application-%DATE%.log',
+//   datePattern: 'YYYY-MM-DD-HH',
+//   zippedArchive: true,
+//   maxSize: '20m',
+//   maxFiles: '14d',
+//   dirname: logConfigs.dir,
+// });
 
-dailyTransport.on('rotate', function(oldFilename, newFilename) {
-  console.log(`daily.on(rotate): oldFilename ${oldFilename} newFilename ${newFilename}`)
-});
+// dailyTransport.on('rotate', function(oldFilename, newFilename) {
+//   console.log(`daily.on(rotate): oldFilename ${oldFilename} newFilename ${newFilename}`)
+// });
 
 
 const logger = createLogger({
@@ -29,7 +29,7 @@ const logger = createLogger({
   ),
   transports: [
     new transports.Console(),
-    dailyTransport,
+    // dailyTransport,
     // new transports.File({
     //   filename: `${logConfigs.dir}/error.log`,
     //   level: 'error'

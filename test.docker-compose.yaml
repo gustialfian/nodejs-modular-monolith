@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  node:
+    env_file:
+      - test.env
+    build:
+      context: .
+      dockerfile: test.dockerfile
+    depends_on:
+      - db
+    volumes:
+      - ./reports:/workspace/reports
+
+  db:
+    image: postgres:12-alpine
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER="${DB_USER}"
+      - POSTGRES_PASSWORD="${DB_PASS}"
+      - POSTGRES_DB="${DB_NAME}"
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    volumes:
+      - db-data:/var/lib/postgresql/data
+      - ./src/module/users:/docker-entrypoint-initdb.d
+
+volumes:
+  db-data:

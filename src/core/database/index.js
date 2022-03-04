@@ -21,15 +21,11 @@ const pool = new Pool({
   connectionTimeoutMillis
 })
 
-pool.query('SELECT NOW()')
-  .then(res => {
-    logger.info(`db connected`)
-  })
-  .catch(err => {
-    logger.error(err.message)
-    cleanUp()
-    process.exit(1)
-  })
+ // TODO something wrong with the pool. It's way to slow connecting and insert operations not working at all
+
+pool.query('SELECT NOW()', (err, res) => {
+  logger.info(`db connected`)
+})
 
 const cleanUp = () => {
   pool.end(() => {

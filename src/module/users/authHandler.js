@@ -13,6 +13,7 @@ router.post('/register', async (req, res) => {
       password: req.body.password,
       role: req.body.role,
     }
+    console.log(req.body)
     const data = await authService.registerUser(user)
     return res.json({
       status: "SUCCESS",
