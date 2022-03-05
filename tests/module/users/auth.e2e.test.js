@@ -18,24 +18,23 @@ describe("authHandler module", () => {
     // Both tests now are produces irrelevant results due to pool problems
 
     it("should create new user in database (posititve)", () => {
-      request(app)
+      return request(app)
         .post('/api/auth/register')
         .send({ username: "root", password: "1234", role: "admin" })
         .expect(200)
-      request(app)
+    })
+
+    it("should check sign-in route", () => {
+      return request(app)
         .post('/api/auth/sign-in')
         .send({ username: "root", password: "1234" })
         .expect(200)
     })
 
     it("should not create duplicates (negative)", () => {
-      request(app)
+      return request(app)
         .post('/api/auth/register')
-        .send({ username: "root2", password: "1234", role: "admin" })
-        .expect(200)
-      request(app)
-        .post('/api/auth/register')
-        .send({ username: "root2", password: "1234", role: "admin" })
+        .send({ username: "root", password: "1234", role: "admin" })
         .expect(500)
     })
   })
