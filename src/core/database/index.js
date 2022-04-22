@@ -1,39 +1,46 @@
-const { Pool } = require('pg')
+const { Pool } = require('pg');
 
-const { logger } = require('../logger')
+const { logger } = require('../logger');
 const {
-  db: {
-    host,
-    port,
-    user,
-    password,
-    database,
-  }
-} = require('../configs')
+  db: { host, port, user, password, database },
+} = require('../configs');
 
-const pool = new Pool({
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+const config = {
   user,
   host,
   database,
   password,
   port,
-})
+};
 
-pool.query('SELECT NOW()')
-  .then(res => {
-    logger.info(`db connected`)
-  })
-  .catch(err => {
-    logger.error(err.message)
-  })
+let client;
 
-const cleanUp = () => {
-  pool.end(() => {
-    logger.info('pool has ended')
-  })
+async function connect() {
+  if (client) {
+    return client;
+  }
+
+  const pool = new Pool(config);
+
+  while (true) {
+    try {
+      client = await pool.connect();
+
+      await client.query('SELECT NOW()');
+      break;
+    } catch (err) {
+      logger.error(
+        `Failed to connect to db, retrying in 3 seconds. Error : ${err.message}`,
+      );
+      await delay(5000);
+    }
+  }
+
+  return client;
 }
 
 module.exports = {
-  pool,
-  cleanUp,
-}
+  connect,
+};

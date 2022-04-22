@@ -1,0 +1,27 @@
+version: "3.7"
+
+services: 
+  app:
+    build: . 
+    restart: always 
+    env_file:
+        - .env.test 
+    environment:
+      - DB_HOST=db${DB_CONTAINER_NAME}
+    ports:
+      - 3000   
+    depends_on:
+    - postgres 
+
+  postgres:
+    image: postgres:13-alpine
+    container_name: db${DB_CONTAINER_NAME}
+    environment:
+      - POSTGRES_USER=test_user
+      - POSTGRES_PASSWORD=test_pass
+      - POSTGRES_DB=test_db
+    volumes:
+      - ./src/module/syncing/schema.sql:/docker-entrypoint-initdb.d/syncing.sql
+      - ./src/module/users/schema.sql:/docker-entrypoint-initdb.d/users.sql
+
+
