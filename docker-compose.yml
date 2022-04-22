@@ -23,5 +23,3 @@ services:
     volumes:
       - ./src/module/syncing/schema.sql:/docker-entrypoint-initdb.d/syncing.sql
       - ./src/module/users/schema.sql:/docker-entrypoint-initdb.d/users.sql
-
-

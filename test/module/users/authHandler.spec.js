@@ -33,6 +33,7 @@ describe('DockerComposeEnvironment', () => {
         password: randomUUID(),
         role: 'user',
       };
+      // TODO: Make sure that it returnes new registered user details
       await request
         .post('/api/auth/register')
         .send(userDto)
