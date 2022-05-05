@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:14.1-alpine
+    restart: always
+    env_file:
+     - ./.env
+    ports:
+      - '6543:5432'
+    volumes: 
+      - db:/var/lib/postgresql/data
+      #- ./db/init.sql:/docker-entrypoint-initdb.d/create_tables.sql
+  api:
+    container_name: nodejs-modular-monolith
+    build:
+      context: ./
+      target: production
+    image: nodejs-modular-monolith
+    depends_on:
+      - db
+    ports:
+      - 3000:3000
+    environment:
+      NODE_ENV: production
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: sandbox
+      DB_PASSWORD: sandbox
+      DB_NAME: sandbox
+    links:
+      - db
+    volumes:
+      - './:/src'
+volumes:
+  db:
+    driver: local
