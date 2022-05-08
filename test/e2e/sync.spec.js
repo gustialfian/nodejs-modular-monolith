@@ -6,7 +6,7 @@ const { app } = require('../../src/core/configs/index')
 
 const composeFilePath = path.resolve(__dirname, "../../");
 const composeFile = "docker-compose.yml";
-describe('GenericContainer', () => {
+describe('Sync module', () => {
   let environment, appContainer;
 
   beforeAll(async () => {
