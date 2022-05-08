@@ -11,7 +11,7 @@ services:
     ports:
       - ${DB_PORT}:${DB_PORT}
     volumes:
-      - ./src/module/users/schema.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./src/module/${MODULE}/schema.sql:/docker-entrypoint-initdb.d/init.sql
 
   app:
     container_name: nodejs-modular-monolith
