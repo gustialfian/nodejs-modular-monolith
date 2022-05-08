@@ -19,6 +19,23 @@ const pool = new Pool({
   port,
 })
 
+let connected = false;
+
+const connect = async () => {
+  while (!connected) {
+    logger.info('Try connect to db');
+    try {
+      await pool.connect();
+      connected = true;
+    } catch (err) {
+      logger.error(err.message);
+      logger.info('Connection to db failed, reconnect.');
+    };
+  }
+}
+
+connect();
+
 pool.query('SELECT NOW()')
   .then(res => {
     logger.info(`db connected`)

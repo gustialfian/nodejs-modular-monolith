@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:13.3-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_DATABASE: ${DB_NAME}
+    ports:
+      - ${DB_PORT}:${DB_PORT}
+    volumes:
+      - ./src/module/${MODULE}/schema.sql:/docker-entrypoint-initdb.d/init.sql
+
+  app:
+    container_name: nodejs-modular-monolith
+    build:
+      context: ./
+    image: nodejs-modular-monolith
+    depends_on:
+      - db
+    ports:
+      - ${APP_PORT}:${APP_PORT}
+    env_file:
+      - ./.env
+    links:
+      - db
