@@ -33,7 +33,7 @@ async function insert(user) {
 async function findByUsername(username) {
   const sql = `select * from ${tbl} where username = $1 limit 1`
   const values = [username]
-  
+
   try {
     const qr = await pool.query(sql, values)
     return qr.rows[0]
@@ -43,8 +43,23 @@ async function findByUsername(username) {
   }
 }
 
+async function getById(userId) {
+  const sql = `select * from ${tbl} where id = $1 limit 1`
+  const values = [userId]
+
+  try {
+    const query = await pool.query(sql, values)
+
+    return query.rows[0]
+  } catch (error) {
+    logger.error(`${namespace}.getById: ${error.message}`)
+    throw error
+  }
+}
+
 module.exports = {
   findAll,
   findByUsername,
   insert,
+  getById,
 }

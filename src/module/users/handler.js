@@ -14,6 +14,17 @@ router.get('/', async (req, res) => {
 })
 
 router.get('/:id', async (req, res) => {
+  try {
+    const data = await userRepo.getById((req.params.id))
+
+    return res.json(data);
+  } catch (error) {
+    logger.error(`${namespace}.get.id`)
+
+    res.status(500)
+    res.json({ error: error.message })
+  }
+
   return res.json(`GET ID: Users ${req.params.id}`)
 })
 
