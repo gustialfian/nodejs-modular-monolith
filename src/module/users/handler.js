@@ -6,8 +6,9 @@ const namespace = 'users.handler'
 
 router.get('/', async (req, res) => {
   try {
-    const data = await userRepo.findAll()
-    return res.json({ data })
+    const data = await userRepo.findAll() // TODO: use pagination
+
+    return res.json(data)
   } catch (error) {
     logger.error(`${namespace}.get./`)
   }
