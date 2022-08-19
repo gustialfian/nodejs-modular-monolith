@@ -13,3 +13,13 @@ CREATE TABLE IF NOT EXISTS users
   updated_at TIMESTAMP WITHOUT TIME ZONE,
   deleted_at TIMESTAMP WITHOUT TIME ZONE
 );
+
+INSERT INTO users (username, password, role)
+VALUES
+    ('root', 'password-hash', 'owner'),
+    ('user-a', 'password-hash', 'user'),
+    ('user-b', 'password-hash', 'guest');
+
+INSERT INTO users (id, username, password, role)
+VALUES
+    ('2c36e3f9-55cb-4aae-a642-5409c3a7dc17', 'well-known-user', 'password-hash', 'user');
