@@ -1,8 +1,7 @@
-require('dotenv').config();
 const path = require("path");
 const { request } = require('undici');
 const { DockerComposeEnvironment } = require('testcontainers');
-const { app } = require('../../src/core/configs/index')
+const { app } = require('../../src/core/configs/index');
 
 const composeFilePath = path.resolve(__dirname, "../../");
 const composeFile = "docker-compose.yml";
@@ -48,7 +47,7 @@ describe('Sync module', () => {
       expect(statusCode).toEqual(200);
     });
   });
-  
+
   afterAll(async () => {
     await environment.down();
   });

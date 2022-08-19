@@ -1,4 +1,3 @@
-require('dotenv').config()
 const { Client } = require('pg');
 const { PostgreSqlContainer } = require('testcontainers');
 const {
@@ -8,7 +7,7 @@ const {
     password,
     database,
   }
-} = require('../../src/core/configs/index')
+} = require('../../src/core/configs/index');
 
 describe('GenericContainer', () => {
   let container;
