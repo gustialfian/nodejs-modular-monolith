@@ -22,4 +22,4 @@ VALUES
 
 INSERT INTO users (id, username, password, role)
 VALUES
-    ('2c36e3f9-55cb-4aae-a642-5409c3a7dc17', 'well-known-user', 'password-hash', 'user');
+    ('2c36e3f9-55cb-4aae-a642-5409c3a7dc17', 'well-known-user', '$2a$12$YZsJbasFj9b5NC5gHX/MVe94wruM6UVCJi40FNgvMhhGEXZlaTYCu', 'ADMIN');
