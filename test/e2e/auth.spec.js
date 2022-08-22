@@ -7,7 +7,7 @@ const { app } = require('../../src/core/configs/index')
 
 const composeFilePath = path.resolve(__dirname, "../../");
 const composeFile = "docker-compose.yml";
-describe('Users module', () => {
+describe('Auth module', () => {
   let environment, appContainer, host, port;
 
   beforeAll(async () => {
