@@ -48,7 +48,7 @@ describe('Sync module', () => {
       expect(statusCode).toEqual(200);
     });
   });
-  
+
   afterAll(async () => {
     await environment.down();
   });

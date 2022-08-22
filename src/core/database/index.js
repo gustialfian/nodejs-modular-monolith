@@ -13,10 +13,10 @@ const {
 
 const pool = new Pool({
   user,
-  host,
+  host:'db',
   database,
   password,
-  port,
+  port: '5432',
 })
 
 let connected = false;
@@ -26,23 +26,20 @@ const connect = async () => {
     logger.info('Try connect to db');
     try {
       await pool.connect();
+      await pool.query('SELECT NOW()')
+        .then(res => {
+          logger.info(`db connected`)
+        })
       connected = true;
     } catch (err) {
       logger.error(err.message);
       logger.info('Connection to db failed, reconnect.');
-    };
+    }
   }
+  return Promise.resolve()
 }
 
-connect();
-
-pool.query('SELECT NOW()')
-  .then(res => {
-    logger.info(`db connected`)
-  })
-  .catch(err => {
-    logger.error(err.message)
-  })
+connect()
 
 const cleanUp = () => {
   pool.end(() => {
