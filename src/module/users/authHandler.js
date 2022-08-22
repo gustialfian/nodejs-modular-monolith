@@ -35,7 +35,7 @@ router.post('/sign-in', async (req, res) => {
 
     const verified = await authService.verifyUser(username, password)
     if (verified.status === 'ERROR') {
-      return res.json({
+      return res.status(400).json({
         status: "ERROR",
         message: verified.message,
       })
@@ -43,7 +43,7 @@ router.post('/sign-in', async (req, res) => {
 
     const token = authService.generateJWT(verified.data)
 
-    return res.json({
+    return res.status(200).json({
       status: "SUCCESS",
       data: `Bearer ${token.data}`,
     })
@@ -56,7 +56,7 @@ router.post('/sign-in', async (req, res) => {
   }
 })
 
-router.get('/guarded', authenticate('ADMIN'), (req, res) => {
+router.get('/guarded', authenticate(['ADMIN']), (req, res) => {
   return res.json("access granted")
 })
 

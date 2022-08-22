@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS users
 
 INSERT INTO users (username, password, role)
 VALUES
-    ('root', 'password-hash', 'owner'),
+    ('root', '$2a$10$QNSGcGbRZFEa93xc8DvJ9eYjtAgHpNfePmUlKzndAQkK29vBY/cV6', 'ADMIN'), -- pass: 'password-hash'
     ('user-a', 'password-hash', 'user'),
     ('user-b', 'password-hash', 'guest');
 
