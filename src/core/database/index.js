@@ -13,10 +13,10 @@ const {
 
 const pool = new Pool({
   user,
-  host:'db',
+  host,
   database,
   password,
-  port: '5432',
+  port,
 })
 
 let connected = false;
