@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'
 
 services:
   db:
@@ -7,12 +7,15 @@ services:
     environment:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASS}
-      POSTGRES_DATABASE: ${DB_NAME}
-      POSTGRES_PORT: ${DB_PORT} # this variable comes from postgres alpine entrypoint file
     ports:
       - ${DB_PORT}:${DB_PORT}
     volumes:
       - ./src/module/${MODULE}/schema.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sandbox"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   app:
     container_name: nodejs-modular-monolith
@@ -20,7 +23,8 @@ services:
       context: ./
     image: nodejs-modular-monolith
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     ports:
       - ${APP_PORT}:${APP_PORT}
     env_file:

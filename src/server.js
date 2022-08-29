@@ -24,10 +24,6 @@ function createApp()  {
     app.use(errorHandler)
   }
 
-  app.get('/', (req, res) => {
-    return res.json('Safe')
-  })
-
   registerRoute(app)
 
   return app

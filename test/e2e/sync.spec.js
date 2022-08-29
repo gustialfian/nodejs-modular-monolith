@@ -19,7 +19,7 @@ describe('Sync module', () => {
   }, 180000);
 
   describe('POST /api/sync', () => {
-    it('Success path', async () => {
+    it('Success if last_sync_at is undefined', async () => {
       const currentDateTime = (new Date()).toISOString();
       const { statusCode, body } = await request(
         `http://${appContainer.getHost()}:${appContainer.boundPorts.ports.get(+app.port)}/api/sync`,
@@ -31,6 +31,42 @@ describe('Sync module', () => {
       expect(resp[0].payload.created_at < currentDateTime).toBe(true);
       expect(resp[4].payload.created_at >= resp[0].payload.created_at).toBe(true);
       expect(statusCode).toEqual(200);
+    });
+
+    it('Success if last_sync_at is defined', async () => {
+      const currentDateTime = (new Date()).toISOString();
+      const { statusCode, body } = await request(
+        `http://${appContainer.getHost()}:${appContainer.boundPorts.ports.get(+app.port)}/api/sync`,
+          {
+            method: 'POST',
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ "last_sync_at": '2022-08-20' })
+          }
+      );
+      const resp = await body.json();
+      expect(resp).toHaveLength(5);
+      expect(resp[0].type).toEqual("CREATE");
+      expect(resp[0].payload.created_at < currentDateTime).toBe(true);
+      expect(resp[4].payload.created_at >= resp[0].payload.created_at).toBe(true);
+      expect(statusCode).toEqual(200);
+    });
+
+    it('Success if last_sync_at is defined for future', async () => {
+      const currentDateTime = (new Date()).toISOString();
+      const { statusCode, body } = await request(
+        `http://${appContainer.getHost()}:${appContainer.boundPorts.ports.get(+app.port)}/api/sync`,
+          {
+            method: 'POST',
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ "last_sync_at": '2023-08-20' })
+          }
+      );
+      const resp = await body.json();
+      expect(resp).toHaveLength(0);
     });
 
     it('Fail path with incorrect last_sync_at', async () => {
@@ -48,7 +84,7 @@ describe('Sync module', () => {
       expect(statusCode).toEqual(200);
     });
   });
-  
+
   afterAll(async () => {
     await environment.down();
   });
